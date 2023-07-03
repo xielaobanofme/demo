@@ -1,0 +1,23 @@
+    def test_btcBlockNumber(self):
+        url=self.base_url+"/btc/hash/info"
+        data = {'hash':"5c8b447029c06b28bdf12df0aabba7623048948626a61fd46c837f2ce6ed7616"}
+        label_service_header = cloud_api_header(data, self.secretId, self.secretKey)
+        result = requests.get(url, params=data, headers=label_service_header).text
+        print(result)
+        res = json.loads(result)
+        if (res["code"]==200):
+            print("okkk")
+        else:
+            logger.error("返回内容不是200,【%s】"%(res))
+    def test_risk_address(self):
+        url=self.base_url + "/riskcheck/address"
+        data={"search":"0xabe26738c8eadcf7d84c0221c2b1c28fc8996ebd38d6cc49aa3c47bdf12fa070","chain":"ETH"}
+        label_service_header = cloud_api_header(data, self.secretId, self.secretKey)
+        result = requests.get(url, params=data, headers=label_service_header).text
+        print(result)
+        res = json.loads(result)
+        print(res)
+        if (res["code"] == 200):
+            print("okkk")
+        else:
+            logger.error("返回内容不是200,【%s】" % (res))
